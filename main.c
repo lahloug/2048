@@ -1,7 +1,9 @@
 #include <stdio.h>
+#include "game.h"
 
 int main()
 {
-	printf("Hello world!\n");
+	short** board = new_board();
+	print_board(board);
 	return 0;
 }

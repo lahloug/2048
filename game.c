@@ -1,6 +1,7 @@
 #include "game.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 short** new_board()
 {
@@ -8,10 +9,7 @@ short** new_board()
 	for (int i=0; i < 4; i++)
 	{
 		board[i] = malloc(4 * sizeof(short));
-		for (int j=0; j < 4; j++)
-		{
-			board[i][j] = 0;
-		}	
+		memset(board[i], 0, 4 * sizeof(short));
 	}
 	return board;
 }

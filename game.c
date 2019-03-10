@@ -6,7 +6,8 @@
 short** new_board()
 {
 	short **board = malloc(sizeof(short*) * 4);
-	for (int i=0; i < 4; i++)
+	int i;
+	for (i=0; i < 4; i++)
 	{
 		board[i] = malloc(4 * sizeof(short));
 		memset(board[i], 0, 4 * sizeof(short));
@@ -16,9 +17,11 @@ short** new_board()
 
 void print_board(short** board)
 {
-    for (int i=0; i < 4; i++)
+    int i;
+    for (i=0; i < 4; i++)
     {
-    	for (int j=0; j < 4; j++)
+	int j;
+    	for (j=0; j < 4; j++)
     	{
     		printf("%d ", board[i][j]);
     	}	

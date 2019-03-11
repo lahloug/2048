@@ -28,3 +28,20 @@ void print_board(short** board)
 	printf("\n");
     }
 }
+
+int is_equal(short** board1, short** board2)
+{
+	int i;
+	for(i=0; i < 4; i++)
+	{
+		int j;
+		for (j=0; j < 4; j++)
+		{
+			if (board1[i][j] != board2[i][j])
+			{
+				return 0;
+			}
+		}
+	}
+	return 1;
+}

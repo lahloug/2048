@@ -2,3 +2,4 @@ language: C
 
 script:
   - make ftest
+  - make test

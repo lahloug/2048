@@ -21,3 +21,5 @@ ftest:
 	@make all
 	@./$(EXEC)
 	@make clean
+test:
+	gcc game.c game-test.c -o test_script -lcheck

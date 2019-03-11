@@ -2,6 +2,6 @@ language: C
 
 dist: trusty
 script:
-  - apt-get install check
+  - sudo apt-get install check
   - make ftest
   - make test

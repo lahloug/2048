@@ -1,0 +1,11 @@
+#include "game.h"
+
+#test game
+     short* board[4];
+     int i;
+     for(i = 0; i < 4; i++)
+     {
+         short row[] = {0, 0, 0, 0};
+         board[i] = &row;
+     }
+    fail_unless(is_equal(new_board(), board));

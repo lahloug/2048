@@ -23,4 +23,4 @@ ftest:
 	@make clean
 test:
 	checkmk game-test.check > game-test.c
-	gcc -v game.c game-test.c -o test_script -lcheck
+	gcc -v game.c game-test.c -o test_script -lcheck -lrt

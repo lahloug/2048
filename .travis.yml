@@ -1,7 +1,0 @@
-language: C
-
-dist: trusty
-script:
-  - sudo apt-get install check
-  - make ftest
-  - make test

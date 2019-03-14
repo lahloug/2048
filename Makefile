@@ -1,4 +1,4 @@
-.PHONY: clean all ftest
+.PHONY: clean all ftest local_ci_test
 
 EXEC=main
 CC=gcc
@@ -9,12 +9,13 @@ all: clean $(EXEC)
 
 $(EXEC): $(OBJ)
 	@$(CC) $^ -o $@
+	@./$@
 
 %.o:%.c
 	@$(CC) -c $^
 
 clean:
-	@rm -f *.o
+	@rm -f *.o game-test.c
 	@rm -f $(EXEC)
 
 ftest:
@@ -23,4 +24,8 @@ ftest:
 	@make clean
 test:
 	checkmk game-test.check > game-test.c
-	gcc -v game.c game-test.c -o test_script -lcheck -lrt
+	gcc game.c game-test.c -o test_script -lrt -lcheck
+	./test_script
+
+local_ci_test:
+	circleci local execute --job build

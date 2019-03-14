@@ -2,7 +2,9 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/ruby:2.4.1
+       - image: buildpack-deps:xenial
     steps:
       - checkout
-      - run: echo "A first hello"
+      - run: apt-get update
+      - run: apt-get --assume-yes install check
+      - run: make

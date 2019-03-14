@@ -1,4 +1,4 @@
-.PHONY: clean all ftest local_ci_test
+.PHONY: clean all ftest local_ci_test local_test test
 
 EXEC=main
 CC=gcc
@@ -26,6 +26,11 @@ ftest:
 test: clean
 	checkmk game-test.check > game-test.c
 	gcc game.c game-test.c -o test_script -lcheck -lrt -lm -lpthread -lsubunit
+	./test_script
+
+local_test: clean
+	checkmk game-test.check > game-test.c
+	gcc game.c game-test.c -o test_script -lcheck
 	./test_script
 
 local_ci_test:

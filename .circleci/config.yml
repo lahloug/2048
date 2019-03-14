@@ -8,3 +8,4 @@ jobs:
       - run: apt-get update
       - run: apt-get --assume-yes install check
       - run: make
+      - run: make test

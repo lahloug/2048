@@ -17,14 +17,15 @@ $(EXEC): $(OBJ)
 clean:
 	@rm -f *.o game-test.c
 	@rm -f $(EXEC)
+	@rm -f test_script
 
 ftest:
 	@make all
 	@./$(EXEC)
 	@make clean
-test:
+test: clean
 	checkmk game-test.check > game-test.c
-	gcc game.c game-test.c -o test_script -lrt -lcheck
+	gcc game.c game-test.c -o test_script -lcheck -lrt -lm -lpthread -lsubunit
 	./test_script
 
 local_ci_test:

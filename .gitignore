@@ -1,2 +1,4 @@
 *.o
 main
+game-test.c
+test_script

@@ -3,7 +3,7 @@
 
 int main()
 {
-	short** board = new_board();
+	short** board = create_empty_board();
 	print_board(board);
 	return 0;
 }

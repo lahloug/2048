@@ -1,3 +1,3 @@
-short** new_board();
+short** create_empty_board();
 void print_board(short** board);
-int is_equal(short** board1, short** board2);
+int is_equal_board(short** board1, short** board2);

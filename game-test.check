@@ -3,4 +3,4 @@
 #test game
     short row[4]={0, 0, 0, 0};
     short* board[4]={row, row, row, row};
-    fail_unless(is_equal(new_board(), board));
+    fail_unless(is_equal_board(create_empty_board(), board));

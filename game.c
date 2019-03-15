@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-short** new_board()
+short** create_empty_board()
 {
 	short **board = malloc(sizeof(short*) * 4);
 	int i;
@@ -29,7 +29,7 @@ void print_board(short** board)
     }
 }
 
-int is_equal(short** board1, short** board2)
+int is_equal_board(short** board1, short** board2)
 {
 	int i;
 	for(i=0; i < 4; i++)

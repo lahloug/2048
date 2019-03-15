@@ -3,7 +3,8 @@
 
 int main()
 {
-	short** board = create_empty_board();
+	short board[4][4];
+	new_game_board(board);
 	print_board(board);
 	return 0;
 }

@@ -1,6 +1,7 @@
 #include "game.h"
 
 #test game
-    short row[4]={0, 0, 0, 0};
-    short* board[4]={row, row, row, row};
-    fail_unless(is_equal_board(create_empty_board(), board));
+    short board1[4][4];
+    new_game_board(board1);
+    short board2[4][4] = {0};
+    fail_unless(is_equal_board(board1, board2));

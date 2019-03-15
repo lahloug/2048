@@ -3,19 +3,20 @@
 #include <stdlib.h>
 #include <string.h>
 
-short** create_empty_board()
+void new_game_board(short (*board)[4])
 {
-	short **board = malloc(sizeof(short*) * 4);
-	int i;
-	for (i=0; i < 4; i++)
+	int i,j;
+	for (i=0; i<4; i++)
 	{
-		board[i] = malloc(4 * sizeof(short));
-		memset(board[i], 0, 4 * sizeof(short));
+		for (j=0; j<4; j++)
+		{
+			board[i][j] = 0;
+		}
 	}
-	return board;
 }
 
-void print_board(short** board)
+void
+print_board(short (*board)[4])
 {
     int i;
     for (i=0; i < 4; i++)
@@ -24,12 +25,12 @@ void print_board(short** board)
     	for (j=0; j < 4; j++)
     	{
     		printf("%d ", board[i][j]);
-    	}	
+    	}
 	printf("\n");
     }
 }
 
-int is_equal_board(short** board1, short** board2)
+int is_equal_board(short (*board1)[4], short (*board2)[4])
 {
 	int i;
 	for(i=0; i < 4; i++)
@@ -39,6 +40,10 @@ int is_equal_board(short** board1, short** board2)
 		{
 			if (board1[i][j] != board2[i][j])
 			{
+				printf("i : %d:\n", i);
+				printf("j : %d:\n", j);
+				printf("board1[i][j] : %d:\n", board1[i][j]);
+				printf("board2[i][j] : %d:\n", board2[i][j]);
 				return 0;
 			}
 		}

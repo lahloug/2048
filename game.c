@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 
 void new_game_board(short (*board)[4])
 {
@@ -37,6 +38,7 @@ void add_random_tile(short tile, short (*board)[4])
 	{
 		printf("No empty cell found!");
 	}
+	srand ( time(NULL) );
 	n = (rand() % n_empty_cells);
 	i = empty_cells[n][0];
 	j = empty_cells[n][1];

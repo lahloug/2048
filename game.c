@@ -48,14 +48,7 @@ void add_random_tile_start(short (*board)[4])
 	p = rand() % 10;
 	int tile1 = 1;
 	int tile2;
-	if (p < 2)
-	{
-		tile2 = 2;
-	}
-	else
-	{
-		tile2 = 1;
-	}
+	tile2 = p < 2 ? 2 : 1;
 	// Fill random location
 	srand ( time(NULL) );
 	p = (rand() % 2);

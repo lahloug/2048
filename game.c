@@ -4,18 +4,6 @@
 #include <string.h>
 #include <time.h>
 
-void new_game_board(short (*board)[4])
-{
-	int i,j;
-	for (i=0; i<4; i++)
-	{
-		for (j=0; j<4; j++)
-		{
-			board[i][j] = 0;
-		}
-	}
-}
-
 void add_random_tile(short tile, short (*board)[4])
 {
 	// Finding empty cells
@@ -50,23 +38,50 @@ void add_random_tile(short tile, short (*board)[4])
 }
 
 
-void add_random_tile_start(short (*board[4]))
+void add_random_tile_start(short (*board)[4])
 {
 	// if a tile value is 2^x, we represent it as x
 	// 20 % of the time a 4 tile and 2 tile
 	// 80 % of the time two 2 tile
 	int p;
-	p = (rand() % 10) +1;
+	srand ( time(NULL) );
+	p = rand() % 10;
 	int tile1 = 1;
-	if (p <= 2)
+	int tile2;
+	if (p < 2)
 	{
-		int tile2 = 4;
+		tile2 = 2;
 	}
 	else
 	{
-		int tile2 = 2;
+		tile2 = 1;
 	}
 	// Fill random location
+	srand ( time(NULL) );
+	p = (rand() % 2);
+	if (p == 0)
+	{
+		add_random_tile(tile1, board);
+		add_random_tile(tile2, board);
+	}
+	else
+	{
+		add_random_tile(tile2, board);
+		add_random_tile(tile1, board);
+	}
+}
+
+void new_game_board(short (*board)[4])
+{
+	int i,j;
+	for (i=0; i<4; i++)
+	{
+		for (j=0; j<4; j++)
+		{
+			board[i][j] = 0;
+		}
+	}
+	add_random_tile_start(board);
 }
 
 void

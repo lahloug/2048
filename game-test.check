@@ -1,7 +1,16 @@
 #include "game.h"
 
 #test game
-    short board1[4][4];
-    new_game_board(board1);
-    short board2[4][4] = {0};
-    fail_unless(is_equal_board(board1, board2));
+    /* Starting board has:
+    at least a 1 and at most two 1
+    at most a single 2
+    exactly 14 empty tiles
+    */
+    short board[4][4];
+    new_game_board(board);
+    int count_0 = frequence(board, 0);
+    int count_1 = frequence(board, 1);
+    int count_2 = frequence(board, 2);
+    fail_unless( count_0 == 14);
+    fail_unless( count_1 >= 1 || count_1 <=2);
+    fail_unless( count_2 <= 1);

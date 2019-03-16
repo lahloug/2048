@@ -119,3 +119,20 @@ int is_equal_board(short (*board1)[4], short (*board2)[4])
 	}
 	return 1;
 }
+
+int frequence(short (*board)[4], short number)
+{
+	int i, j;
+	int found = 0;
+	for (i = 0; i<4; i++)
+	{
+		for (j=0; j<4; j++)
+		{
+			if (board[i][j] == number)
+			{
+				found++;
+			}
+		}
+	}
+	return found;
+}

@@ -4,7 +4,7 @@
 #include <string.h>
 #include <time.h>
 
-void add_random_tile(short tile, short (*board)[4])
+void add_random_tile(int tile, int (*board)[4])
 {
 	// Finding empty cells
 	int i, j, n;
@@ -38,7 +38,7 @@ void add_random_tile(short tile, short (*board)[4])
 }
 
 
-void add_random_tile_start(short (*board)[4])
+void add_random_tile_start(int (*board)[4])
 {
 	// if a tile value is 2^x, we represent it as x
 	// 20 % of the time a 4 tile and 2 tile
@@ -64,7 +64,7 @@ void add_random_tile_start(short (*board)[4])
 	}
 }
 
-void new_game_board(short (*board)[4])
+void new_game_board(int (*board)[4])
 {
 	int i,j;
 	for (i=0; i<4; i++)
@@ -78,7 +78,7 @@ void new_game_board(short (*board)[4])
 }
 
 void
-print_board(short (*board)[4])
+print_board(int (*board)[4])
 {
     int i;
     for (i=0; i < 4; i++)
@@ -92,7 +92,7 @@ print_board(short (*board)[4])
     }
 }
 
-int is_equal_board(short (*board1)[4], short (*board2)[4])
+int is_equal_board(int (*board1)[4], int (*board2)[4])
 {
 	int i;
 	for(i=0; i < 4; i++)
@@ -113,7 +113,7 @@ int is_equal_board(short (*board1)[4], short (*board2)[4])
 	return 1;
 }
 
-int frequence(short (*board)[4], short number)
+int frequence(int (*board)[4], int number)
 {
 	int i, j;
 	int found = 0;

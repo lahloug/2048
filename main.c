@@ -3,8 +3,8 @@
 
 int main()
 {
-	short board[4][4];
-	short tile = 2;
+	int board[4][4];
+	int tile = 2;
 	new_game_board(board);
 	print_board(board);
 	return 0;

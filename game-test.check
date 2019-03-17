@@ -6,7 +6,7 @@
     at most a single 2
     exactly 14 empty tiles
     */
-    short board[4][4];
+    int board[4][4];
     new_game_board(board);
     int count_0 = frequence(board, 0);
     int count_1 = frequence(board, 1);

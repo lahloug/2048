@@ -15,34 +15,65 @@
     fail_unless( count_1 >= 1 || count_1 <=2);
     fail_unless( count_2 <= 1);
 
-#test move_row_left2test
+#test move_row2test
+    // left move
     // Use case 1
     int row1[4] = {0, 0, 0, 0};
     int row2[4] = {0, 0, 0, 0};
-    move_row_left(row1);
+    move_row(row1, 'l');
     fail_unless(is_equal_row(row1, row2));
     // Use case 2
     int row3[4] = {0, 1, 0, 0};
     int row4[4] = {1, 0, 0, 0};
-    move_row_left(row3);
+    move_row(row3, 'l');
     fail_unless(is_equal_row(row3, row4));
     // Use case 3
     int row5[4] = {0, 1, 0, 2};
     int row6[4] = {1, 2, 0, 0};
-    move_row_left(row5);
+    move_row(row5, 'l');
     fail_unless(is_equal_row(row5, row6));
     // Use case 4
     int row7[4] = {0, 1, 0, 1};
     int row8[4] = {2, 0, 0, 0};
-    move_row_left(row7);
+    move_row(row7, 'l');
     fail_unless(is_equal_row(row7, row8));
     // Use case 5
     int row9[4] = {2, 2, 5, 5};
     int row10[4] = {3, 6, 0, 0};
-    move_row_left(row9);
+    move_row(row9, 'l');
     fail_unless(is_equal_row(row9, row10));
     // Use case 6
     int row11[4] = {1, 1, 1, 1};
     int row12[4] = {2, 2, 0, 0};
-    move_row_left(row11);
+    move_row(row11, 'l');
     fail_unless(is_equal_row(row11, row12));
+    // Use case 7
+    int row13[4] = {0, 0, 0, 0};
+    int row14[4] = {0, 0, 0, 0};
+    move_row(row13, 'r');
+    fail_unless(is_equal_row(row1, row2));
+    // Use case 8
+    int row15[4] = {0, 1, 0, 0};
+    int row16[4] = {0, 0, 0, 1};
+    move_row(row15, 'r');
+    fail_unless(is_equal_row(row3, row4));
+    // Use case 9
+    int row17[4] = {0, 1, 0, 2};
+    int row18[4] = {0, 0, 1, 2};
+    move_row(row17, 'r');
+    fail_unless(is_equal_row(row5, row6));
+    // Use case 10
+    int row19[4] = {0, 1, 0, 1};
+    int row20[4] = {0, 0, 0, 2};
+    move_row(row19, 'r');
+    fail_unless(is_equal_row(row19, row20));
+    // Use case 11
+    int row21[4] = {2, 2, 5, 5};
+    int row22[4] = {0, 0, 3, 6};
+    move_row(row21, 'r');
+    fail_unless(is_equal_row(row21, row22));
+    // Use case 12
+    int row23[4] = {1, 1, 1, 1};
+    int row24[4] = {0, 0, 2, 2};
+    move_row(row23, 'r');
+    fail_unless(is_equal_row(row23, row24));

@@ -1,10 +1,11 @@
 void new_game_board(int (*board)[4]);
 void add_random_tile(int tile, int (*board)[4]);
 void add_random_tile_start(int (*board)[4]);
-void fill_zero(int row[4], int start);
+void fill_zero(int row[4], int start, char direction);
 void copy_row(int source[4], int destination[4]);
-void move_row_left(int row[4]);
-void move_board_left(int (*board)[4]);
+void copy_board(int (*source)[4], int (*destination)[4]);
+void move_row(int row[4], char direction);
+void move_board(int (*board)[4], char direction);
 void print_row(int row[4]);
 void print_board(int (*board)[4]);
 int is_equal_row(int row1[4], int row2[4]);

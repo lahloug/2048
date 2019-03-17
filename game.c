@@ -77,12 +77,12 @@ void new_game_board(int (*board)[4])
 	add_random_tile_start(board);
 }
 
-void fill_zero(int row[4], int start)
+void copy_board(int (*source)[4], int (*destination)[4])
 {
 	int i;
-	for (i=start; i < 4; i++)
+	for (i=0; i<4; i++)
 	{
-		row[i] = 0;
+		copy_row(source[i], destination[i]);
 	}
 }
 
@@ -95,7 +95,34 @@ void copy_row(int source[4], int destination[4])
 	}
 }
 
-void move_row_left(int row[4])
+void fill_zero(int row[4], int start, char direction)
+{
+	int i;
+	if (direction == 'l')
+	{
+		for (i=start; i < 4; i++)
+		{
+			row[i] = 0;
+		}
+	}
+	else if (direction == 'r')
+	{
+		int array[4];
+		i = 0;
+		for (i = 0; i < 4 - start; i++)
+		{
+			array[i] = 0;
+		}
+		i = 0;
+		for (i = 4 - start; i < 4; i++)
+		{
+			array[i] = row[i + start - 4];
+		}
+		copy_row(array, row);
+	}
+}
+
+void move_row(int row[4], char direction)
 {
 	int i;
 	int row_intermediate[4];
@@ -112,7 +139,7 @@ void move_row_left(int row[4])
 	if (n_tiles_intermediate == 0) {return;}
 	if (n_tiles_intermediate == 1)
        	{
-		fill_zero(row_intermediate, n_tiles_intermediate);
+		fill_zero(row_intermediate, n_tiles_intermediate, direction);
 		copy_row(row_intermediate, row);
 		return;
 	}
@@ -135,18 +162,26 @@ void move_row_left(int row[4])
 		row_final[n_tiles_final] = row_intermediate[i];
 		n_tiles_final++;
 	}
-	fill_zero(row_final, n_tiles_final);
+	fill_zero(row_final, n_tiles_final, direction);
 	copy_row(row_final, row);
 }
 
-void move_board_left(int (*board)[4])
+/* Move the board to the given direction
+* direction: r or l (respective for right or left
+*/ 
+void move_board(int (*board)[4], char direction)
 {
 	int i;
+	int before[4][4];
+	copy_board(board, before);
 	for (i=0; i < 4; i++)
 	{
-		move_row_left(board[i]);
+		move_row(board[i], direction);
 	}
-	add_random_tile(1, board);
+	if (!is_equal_board(before, board))
+	{
+		add_random_tile(1, board);
+	}
 }
 
 void print_row(int row[4])
@@ -197,10 +232,10 @@ int is_equal_board(int (*board1)[4], int (*board2)[4])
 		{
 			if (board1[i][j] != board2[i][j])
 			{
-				printf("i : %d:\n", i);
-				printf("j : %d:\n", j);
-				printf("board1[i][j] : %d:\n", board1[i][j]);
-				printf("board2[i][j] : %d:\n", board2[i][j]);
+				// printf("i : %d:\n", i);
+				// printf("j : %d:\n", j);
+				// printf("board1[i][j] : %d:\n", board1[i][j]);
+				// printf("board2[i][j] : %d:\n", board2[i][j]);
 				return 0;
 			}
 		}

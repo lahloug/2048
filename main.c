@@ -8,10 +8,10 @@ int main()
 	new_game_board(board);
 	print_board(board);
 	printf("\n");
-	move_board_left(board);
+	move_board(board, 'r');
 	print_board(board);
 	printf("\n");
-	move_board_left(board);
+	move_board(board, 'r');
 	print_board(board);
 	return 0;
 }

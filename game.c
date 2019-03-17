@@ -77,6 +77,88 @@ void new_game_board(int (*board)[4])
 	add_random_tile_start(board);
 }
 
+void fill_zero(int row[4], int start)
+{
+	int i;
+	for (i=start; i < 4; i++)
+	{
+		row[i] = 0;
+	}
+}
+
+void copy_row(int source[4], int destination[4])
+{
+	int i;
+	for (i=0; i<4; i++)
+	{
+		destination[i] = source[i];
+	}
+}
+
+void move_row_left(int row[4])
+{
+	int i;
+	int row_intermediate[4];
+	int row_final[4];
+	int n_tiles_intermediate = 0;
+	int n_tiles_final = 0;
+	for (i=0; i<4; i++)
+	{
+		if(row[i] != 0)
+		{
+			row_intermediate[n_tiles_intermediate++] = row[i];
+		}
+	}
+	if (n_tiles_intermediate == 0) {return;}
+	if (n_tiles_intermediate == 1)
+       	{
+		fill_zero(row_intermediate, n_tiles_intermediate);
+		copy_row(row_intermediate, row);
+		return;
+	}
+	i = 0;
+	// merge neighbour identical number
+	while (i < n_tiles_intermediate - 1)
+	{
+		if (row_intermediate[i] != row_intermediate[i+1])
+		{
+			row_final[n_tiles_final++] = row_intermediate[i++];
+		}
+		else
+		{
+			row_final[n_tiles_final++] = row_intermediate[i++] + 1;
+			i++;
+		}
+	}
+	if (i == n_tiles_intermediate - 1) // Last two numbers were not merged
+	{
+		row_final[n_tiles_final] = row_intermediate[i];
+		n_tiles_final++;
+	}
+	fill_zero(row_final, n_tiles_final);
+	copy_row(row_final, row);
+}
+
+void move_board_left(int (*board)[4])
+{
+	int i;
+	for (i=0; i < 4; i++)
+	{
+		move_row_left(board[i]);
+	}
+	add_random_tile(1, board);
+}
+
+void print_row(int row[4])
+{
+    int i;
+    for (i=0; i < 4; i++)
+    {
+    		printf("%d ", row[i]);
+    }
+    printf("\n");
+}
+
 void
 print_board(int (*board)[4])
 {
@@ -90,6 +172,19 @@ print_board(int (*board)[4])
     	}
 	printf("\n");
     }
+}
+
+int is_equal_row(int row1[4], int row2[4])
+{
+	int i;
+	for (i=0; i < 4; i++)
+	{
+		if (row1[i] != row2[i])
+		{
+			return 0;
+		}
+	}
+	return 1;
 }
 
 int is_equal_board(int (*board1)[4], int (*board2)[4])

@@ -1,6 +1,6 @@
 #include "game.h"
 
-#test game
+#test new_game_board2test
     /* Starting board has:
     at least a 1 and at most two 1
     at most a single 2
@@ -14,3 +14,35 @@
     fail_unless( count_0 == 14);
     fail_unless( count_1 >= 1 || count_1 <=2);
     fail_unless( count_2 <= 1);
+
+#test move_row_left2test
+    // Use case 1
+    int row1[4] = {0, 0, 0, 0};
+    int row2[4] = {0, 0, 0, 0};
+    move_row_left(row1);
+    fail_unless(is_equal_row(row1, row2));
+    // Use case 2
+    int row3[4] = {0, 1, 0, 0};
+    int row4[4] = {1, 0, 0, 0};
+    move_row_left(row3);
+    fail_unless(is_equal_row(row3, row4));
+    // Use case 3
+    int row5[4] = {0, 1, 0, 2};
+    int row6[4] = {1, 2, 0, 0};
+    move_row_left(row5);
+    fail_unless(is_equal_row(row5, row6));
+    // Use case 4
+    int row7[4] = {0, 1, 0, 1};
+    int row8[4] = {2, 0, 0, 0};
+    move_row_left(row7);
+    fail_unless(is_equal_row(row7, row8));
+    // Use case 5
+    int row9[4] = {2, 2, 5, 5};
+    int row10[4] = {3, 6, 0, 0};
+    move_row_left(row9);
+    fail_unless(is_equal_row(row9, row10));
+    // Use case 6
+    int row11[4] = {1, 1, 1, 1};
+    int row12[4] = {2, 2, 0, 0};
+    move_row_left(row11);
+    fail_unless(is_equal_row(row11, row12));

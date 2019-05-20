@@ -13,5 +13,21 @@ int main()
 	printf("\n");
 	move_board(board, 'r');
 	print_board(board);
+	printf("\n");
+	move_board(board, 'd');
+	print_board(board);
+	printf("\n");
+	move_board(board, 'd');
+	print_board(board);
+	printf("\n");
+	move_board(board, 'd');
+	print_board(board);
+	printf("\n");
+	move_board(board, 'u');
+	print_board(board);
+	printf("\n");
+	move_board(board, 'l');
+	print_board(board);
+	printf("\n");
 	return 0;
 }

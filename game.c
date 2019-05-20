@@ -49,19 +49,8 @@ void add_random_tile_start(int (*board)[4])
 	int tile1 = 1;
 	int tile2;
 	tile2 = p < 2 ? 2 : 1;
-	// Fill random location
-	srand ( time(NULL) );
-	p = (rand() % 2);
-	if (p == 0)
-	{
-		add_random_tile(tile1, board);
-		add_random_tile(tile2, board);
-	}
-	else
-	{
-		add_random_tile(tile2, board);
-		add_random_tile(tile1, board);
-	}
+	add_random_tile(tile1, board);
+	add_random_tile(tile2, board);
 }
 
 void new_game_board(int (*board)[4])
@@ -113,7 +102,6 @@ void fill_zero(int row[4], int start, char direction)
 		{
 			array[i] = 0;
 		}
-		i = 0;
 		for (i = 4 - start; i < 4; i++)
 		{
 			array[i] = row[i + start - 4];
@@ -122,8 +110,20 @@ void fill_zero(int row[4], int start, char direction)
 	}
 }
 
+void reverse_row(int row[], int size)
+{
+	int row_intermediate[4];
+	int i;
+	for (i = 0; i < size; i++)
+	{
+		row_intermediate[i] = row[size - i - 1];
+	}
+	copy_row(row_intermediate, row);
+}
+
 void move_row(int row[4], char direction)
 {
+	// row_intermediate correspond to row without the O's
 	int i;
 	int row_intermediate[4];
 	int row_final[4];
@@ -145,6 +145,10 @@ void move_row(int row[4], char direction)
 	}
 	i = 0;
 	// merge neighbour identical number
+	if (direction == 'r')
+	{
+		reverse_row(row_intermediate, n_tiles_intermediate);
+	}
 	while (i < n_tiles_intermediate - 1)
 	{
 		if (row_intermediate[i] != row_intermediate[i+1])
@@ -162,22 +166,57 @@ void move_row(int row[4], char direction)
 		row_final[n_tiles_final] = row_intermediate[i];
 		n_tiles_final++;
 	}
+	if (direction == 'r')
+	{
+		reverse_row(row_final, n_tiles_final);
+	}
 	fill_zero(row_final, n_tiles_final, direction);
 	copy_row(row_final, row);
 }
 
+
+void transpose(int (*board)[4])
+{
+	int i, j, temp;
+	for (i = 0; i < 4; i++)
+	{
+		for (j = 0; j < i; j++)
+		{
+			temp = board[i][j];
+			board[i][j] = board[j][i];
+			board[j][i] = temp;
+		}
+	}
+}
+
 /* Move the board to the given direction
-* direction: r or l (respective for right or left
+* direction:
+*   _ r for right
+*   _ l for left
+*   _ u for up
+*   _ d for down
 */ 
 void move_board(int (*board)[4], char direction)
 {
 	int i;
 	int before[4][4];
+	int retranspose = 0;
 	copy_board(board, before);
+	if (direction == 'u' | direction == 'd')
+	{
+		transpose(board);
+		retranspose = 1;
+		direction = (direction == 'u') ? 'l' : 'r'; 
+	}
 	for (i=0; i < 4; i++)
 	{
 		move_row(board[i], direction);
 	}
+	if (retranspose)
+	{
+		transpose(board);
+	}
+
 	if (!is_equal_board(before, board))
 	{
 		add_random_tile(1, board);

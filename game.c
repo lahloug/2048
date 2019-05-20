@@ -298,3 +298,22 @@ int frequence(int (*board)[4], int number)
 	}
 	return found;
 }
+
+void play()
+{
+	int board[4][4];
+	char direction;
+	new_game_board(board);
+	while (1)
+	{
+	print_board(board);
+	printf("\n");
+	scanf(" %c", &direction);
+	if (direction != 'u' && direction != 'd' && direction != 'r' && direction != 'l')
+	{
+		printf("You should chose one of these direction: u, p, r, l. You chose %c", direction);
+		continue;
+	}
+	move_board(board, direction);
+	}
+}

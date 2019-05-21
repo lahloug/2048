@@ -299,12 +299,32 @@ int frequence(int (*board)[4], int number)
 	return found;
 }
 
+int is_lost(int (*board)[4])
+{
+	char directions[4] = {'r', 'l', 'u', 'p'};
+	char direction;
+	int board_copy[4][4];
+	int i;
+	for (i=0; i < 4; i++)
+	{
+		direction = directions[i];
+		copy_board(board, board_copy);
+		move_board(board_copy, direction);
+		if (!is_equal_board(board, board_copy))
+		{
+			return 0;
+		}
+	}
+	return 1;
+}
+
+
 void play()
 {
 	int board[4][4];
 	char direction;
 	new_game_board(board);
-	while (1)
+	while (!is_lost(board))
 	{
 	print_board(board);
 	printf("\n");

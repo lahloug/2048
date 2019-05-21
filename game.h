@@ -14,3 +14,4 @@ int is_equal_row(int row1[4], int row2[4]);
 int is_equal_board(int (*board1)[4], int (*board2)[4]);
 int frequence(int (*board)[4], int number);
 void play();
+int is_lost(int (*board)[4]);
